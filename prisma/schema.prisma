@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Define a entidade User
+model User {
+  userId      String         @id @unique @default(uuid())
+  name        String
+  email       String
+  password    String
+  status      UserStatusENUM
+  // Define uma relação N-M com Service através de ServiceUser
+  ServiceUser ServiceUser[]
+}
+
+// Define a entidade Service
+model Service {
+  serviceId   String            @id @unique @default(uuid())
+  name        String
+  local       String
+  date        DateTime
+  slug        String
+  status      ServiceStatusENUM
+  // Define uma relação N-M com User através de ServiceUser
+  ServiceUser ServiceUser[]
+}
+
+// Define a tabela intermediária para representar a relação N-M
+model ServiceUser {
+  id           Int          @id @default(autoincrement())
+  userId       String
+  serviceId    String
+  position     Int
+  positionName PositionName
+  // Chave estrangeira que conecta ServiceUser a User
+  user         User         @relation(fields: [userId], references: [userId])
+  // Chave estrangeira que conecta ServiceUser a Service
+  service      Service      @relation(fields: [serviceId], references: [serviceId])
+
+  // Garante que a combinação de userId e serviceId seja única
+  @@unique([userId, serviceId])
+}
+
+enum ServiceStatusENUM {
+  INATIVO
+  ABERTO
+  FECHADO
+  CONCLUIDO
+}
+
+enum UserStatusENUM {
+  INATIVO
+  ATIVO
+  AFASTADO
+  EXCLUIDO
+}
+
+enum PositionName {
+  DIRETOR
+  MESA
+  CAM2
+  CAM3
+  CAM4
+  CAM5
+  CAM6
+  ADICIONAL
+  TREINEE
+}
