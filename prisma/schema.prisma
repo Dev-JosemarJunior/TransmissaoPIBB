@@ -13,10 +13,11 @@ datasource db {
 // Define a entidade User
 model User {
   userId      String         @id @unique @default(uuid())
-  name        String
-  email       String
+  name        String         @unique
+  email       String         @unique
   password    String
   status      UserStatusENUM
+  createdAt   DateTime
   // Define uma relação N-M com Service através de ServiceUser
   ServiceUser ServiceUser[]
 }
@@ -27,8 +28,9 @@ model Service {
   name        String
   local       String
   date        DateTime
+  createdAt   DateTime
   slug        String
-  status      ServiceStatusENUM
+  statusUser  ServiceStatusENUM
   // Define uma relação N-M com User através de ServiceUser
   ServiceUser ServiceUser[]
 }
