@@ -30,7 +30,7 @@ model Service {
   date        DateTime
   createdAt   DateTime
   slug        String
-  statusUser  ServiceStatusENUM
+  status      ServiceStatusENUM
   // Define uma relação N-M com User através de ServiceUser
   ServiceUser ServiceUser[]
 }
