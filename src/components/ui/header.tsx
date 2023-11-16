@@ -12,17 +12,17 @@ const Header = () => {
             {/* <Logo /> */}
             <ul className="hidden gap-x-6 text-white md:flex">
               <li>
-                <Link href="/about">
+                <Link href="/">
                   <p>Escala Fechada</p>
                 </Link>
               </li>
               <li>
-                <Link href="/services">
+                <Link href="/Ultimos30Dias">
                   <p>Ultimos 30 dias</p>
                 </Link>
               </li>
               <li>
-                <Link href="/contacts">
+                <Link href="/EventosAbertos">
                   <p>Em Aberto</p>
                 </Link>
               </li>

@@ -34,13 +34,13 @@ const ServiceCard = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <Card className="m-2 md:m-3 border-zinc-400 border-2">
+  <Card className="m-2 border-2 border-zinc-400 md:m-3">
     <CardHeader className="pb-3">
-      <CardTitle>Culto de Quarta</CardTitle>
+      <CardTitle>Culto de Domingo</CardTitle>
       <CardDescription>
-        <p className="text-xs">Status: Culto Fechado</p>
-        <p className="text-xs">Dia: 15/11/2023</p>
-        <p className="text-xs">Local: Galpão</p>
+        Status: Culto Fechado<br/>
+        Dia: 15/11/2023<br/>
+        Local: Galpão
       </CardDescription>
     </CardHeader>
     <CardContent className="grid gap-1">
