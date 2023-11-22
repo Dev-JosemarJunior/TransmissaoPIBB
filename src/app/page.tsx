@@ -1,4 +1,4 @@
-import { ServiceCard } from "@/components/servicecard";
+import { ServiceCard } from "@/components/servicecard2";
 import Image from "next/image";
 
 export default function Home() {
@@ -7,13 +7,10 @@ export default function Home() {
       <h1 className="my-14 text-center text-3xl uppercase text-zinc-100 font-semibold bold md:text-5xl">
         Escala Fechada
       </h1>
-      <div className=" flex flex-col items-center justify-between px-24 md:flex-row ">
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
+      <div className=" flex flex-col items-center justify-center px-24 md:flex-row ">
+        <ServiceCard serviceTitle={"Culto de Quarta"} serviceStatus={"FECHADO"} serviceDate={"22/11/2023"} servicePlace={"Galpão"} />
+        <ServiceCard serviceTitle={"Culto DTX"} serviceStatus={"INATIVO"} serviceDate={"25/11/2023"}/>
+        <ServiceCard serviceTitle={"Culto de Domingo"} serviceStatus={"ABERTO"} serviceDate={"26/11/2023"} servicePlace={"Galpão"} />
       </div>
     </main>
   );
