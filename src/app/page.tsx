@@ -1,6 +1,14 @@
 import { ServiceCard } from "@/components/servicecard2";
 import Image from "next/image";
 
+const test = {
+  directorUser: "Neilson",
+  switcherUser: "João",
+  cam2User: "João",
+  cam3User: "Maria  ",
+  additional: [{userId: "1", userName: "oi"}, {userId: "2", userName: "tchau"}],
+};
+
 export default function Home() {
   return (
     <main className="min-h-screen">
@@ -8,7 +16,7 @@ export default function Home() {
         Escala Fechada
       </h1>
       <div className=" flex flex-col items-center justify-center px-24 md:flex-row ">
-        <ServiceCard serviceTitle={"Culto de Quarta"} serviceStatus={"FECHADO"} serviceDate={"22/11/2023"} servicePlace={"Galpão"} />
+        <ServiceCard serviceTitle={"Culto de Quarta"} serviceStatus={"FECHADO"} serviceDate={"22/11/2023"} servicePlace={"Galpão"}  />
         <ServiceCard serviceTitle={"Culto DTX"} serviceStatus={"INATIVO"} serviceDate={"25/11/2023"}/>
         <ServiceCard serviceTitle={"Culto de Domingo"} serviceStatus={"ABERTO"} serviceDate={"26/11/2023"} servicePlace={"Galpão"} />
       </div>
