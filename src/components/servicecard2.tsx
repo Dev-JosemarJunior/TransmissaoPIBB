@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {
   CameraIcon,
   MixerVerticalIcon,
@@ -189,11 +190,11 @@ export function ServiceCard(
   ) {
     if (serviceProps.serviceStatus == "INATIVO") {
       return (
-        <Card className="m-2 min-h-[38.5rem] border-2 border-red-500 bg-slate-300 md:m-3">
+        <Card className="m-2 h-full border-2 border-red-500 bg-slate-300 md:m-3">
           <CardHeader className="min-w-[13rem] pb-3">
             <CardTitle>{serviceProps.serviceTitle}</CardTitle>
             <CardDescription>
-              Status: {serviceProps.serviceStatus}
+              Status: <Badge variant="destructive" className="text-[0.60rem]">{serviceProps.serviceStatus}</Badge>
               <br />
               Dia: {serviceProps.serviceDate}
               <br />
@@ -202,7 +203,7 @@ export function ServiceCard(
           </CardHeader>
           <CardContent className="grid gap-1">
             <div className="flex items-center justify-center">
-              <div className="px-2  py-40">
+              <div className="py-20">
                 <p className="text-sm font-medium leading-none  text-zinc-600">
                   Não haverá Culto
                 </p>
@@ -217,7 +218,7 @@ export function ServiceCard(
           <CardHeader className="min-w-[13rem] pb-3">
             <CardTitle>{serviceProps.serviceTitle}</CardTitle>
             <CardDescription>
-              Status: {serviceProps.serviceStatus}
+              Status: <Badge className="bg-yellow-500 text-[0.60rem] hover:bg-yellow-400">{serviceProps.serviceStatus}</Badge>
               <br />
               Dia: {serviceProps.serviceDate}
               <br />
@@ -230,33 +231,33 @@ export function ServiceCard(
     } else if (serviceProps.serviceStatus == "FECHADO") {
       return (
         <Card className="m-2 border-2 border-green-500 md:m-3">
-          {/* <CardHeader className="min-w-[13rem] pb-3">
+          <CardHeader className="min-w-[13rem] pb-3">
             <CardTitle>{serviceProps.serviceTitle}</CardTitle>
             <CardDescription>
-              Status: {serviceProps.serviceStatus}
+              Status: <Badge className="bg-green-500 text-[0.60rem] hover:bg-green-400">{serviceProps.serviceStatus}</Badge>
               <br />
               Dia: {serviceProps.serviceDate}
               <br />
               Local: {serviceProps.servicePlace}
             </CardDescription>
           </CardHeader>
-          {buildCardUserInfo(usersProps)} */}
+          {buildCardUserInfo(usersProps)}
         </Card>
       );
     } else if (serviceProps.serviceStatus == "CONCLUIDO") {
       return (
         <Card className="m-2 border-2 bg-zinc-400 border-zinc-400 md:m-3">
-          {/* <CardHeader className="min-w-13rem] pb-3">
+          <CardHeader className="min-w-13rem] pb-3">
             <CardTitle>{serviceProps.serviceTitle}</CardTitle>
             <CardDescription>
-              Status: {serviceProps.serviceStatus}
+              Status: <Badge variant="outline"></Badge>
               <br />
               Dia: {serviceProps.serviceDate}
               <br />
               Local: {serviceProps.servicePlace}
             </CardDescription>
           </CardHeader>
-          {buildCardUserInfo(usersProps)} */}
+          {buildCardUserInfo(usersProps)}
         </Card>
       );
     } else {
