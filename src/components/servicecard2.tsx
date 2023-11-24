@@ -19,9 +19,7 @@ interface ServiceInfoProps {
   serviceStatus: String;
   serviceDate: String;
   servicePlace?: String;
-}
 
-interface UsersInfoProps {
   directorUser: String;
   switcherUser?: String;
   cam2User?: String;
@@ -37,11 +35,10 @@ interface UsersInfoProps {
 }
 
 export function ServiceCard(
-  serviceProps: ServiceInfoProps,
-  usersProps: UsersInfoProps,
+  serviceProps: ServiceInfoProps
 ) {
   
-  function buildCardUserInfo() {
+  function buildCardUserInfo(usersProps: ServiceInfoProps,) {
     return (
       <CardContent className="grid gap-1">
         <div className="-mx-2 flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground">
@@ -185,8 +182,7 @@ export function ServiceCard(
   }
 
   function handleServiceCard(
-    serviceProps: ServiceInfoProps,
-    usersProps: UsersInfoProps,
+    serviceProps: ServiceInfoProps
   ) {
     if (serviceProps.serviceStatus == "INATIVO") {
       return (
@@ -225,7 +221,7 @@ export function ServiceCard(
               Local: {serviceProps.servicePlace}
             </CardDescription>
           </CardHeader>
-          {buildCardUserInfo()}
+          {buildCardUserInfo(serviceProps)}
         </Card>
       );
     } else if (serviceProps.serviceStatus == "FECHADO") {
@@ -241,7 +237,7 @@ export function ServiceCard(
               Local: {serviceProps.servicePlace}
             </CardDescription>
           </CardHeader>
-          {buildCardUserInfo(usersProps)}
+          {buildCardUserInfo(serviceProps)}
         </Card>
       );
     } else if (serviceProps.serviceStatus == "CONCLUIDO") {
@@ -257,7 +253,7 @@ export function ServiceCard(
               Local: {serviceProps.servicePlace}
             </CardDescription>
           </CardHeader>
-          {buildCardUserInfo(usersProps)}
+          {buildCardUserInfo(serviceProps)}
         </Card>
       );
     } else {
@@ -269,5 +265,5 @@ export function ServiceCard(
     }
   }
 
-  return <div>{handleServiceCard(serviceProps, usersProps)}</div>;
+  return <div>{handleServiceCard(serviceProps)}</div>;
 }

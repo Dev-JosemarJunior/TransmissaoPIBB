@@ -9,7 +9,7 @@ const Header = () => {
       <div className="sticky top-0 h-20 w-full bg-zinc-800">
         <div className="container mx-auto h-full px-4">
           <div className="flex h-full items-center justify-between">
-            {/* <Logo /> */}
+            <p className="text-s font-bold text-zinc-100 uppercase">IServ App</p>
             <ul className="hidden gap-x-6 text-white md:flex">
               <li>
                 <Link href="/">
