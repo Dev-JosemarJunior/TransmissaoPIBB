@@ -14,7 +14,8 @@ import {
   FaceIcon,
 } from "@radix-ui/react-icons";
 
-interface ServiceInfoProps {
+export interface ServiceInfoProps {
+  serviceId: String;
   serviceTitle: String;
   serviceStatus: String;
   serviceDate: String;
@@ -45,7 +46,7 @@ export function ServiceCard(
           <DesktopIcon className="mt-px h-5 w-5" />
           <div className="space-y-1">
             {usersProps?.directorUser ? (
-              <p className="text-sm font-medium leading-none">
+              <p className="text-sm font-bold leading-none">
                 {usersProps.directorUser}
               </p>
             ) : (
@@ -60,7 +61,7 @@ export function ServiceCard(
           <MixerVerticalIcon className="mt-px h-5 w-5" />
           <div className="space-y-1">
             {usersProps?.switcherUser ? (
-              <p className="text-sm font-medium leading-none">
+              <p className="text-sm font-bold leading-none">
                 {usersProps.switcherUser}
               </p>
             ) : (
@@ -75,7 +76,7 @@ export function ServiceCard(
           <CameraIcon className="mt-px h-5 w-5" />
           <div className="space-y-1">
             {usersProps?.cam2User ? (
-              <p className="text-sm font-medium leading-none">
+              <p className="text-sm font-bold leading-none">
                 {usersProps.cam2User}
               </p>
             ) : (
@@ -90,7 +91,7 @@ export function ServiceCard(
           <CameraIcon className="mt-px h-5 w-5" />
           <div className="space-y-1">
             {usersProps?.cam3User ? (
-              <p className="text-sm font-medium leading-none">
+              <p className="text-sm font-bold leading-none">
                 {usersProps.cam3User}
               </p>
             ) : (
@@ -105,7 +106,7 @@ export function ServiceCard(
           <CameraIcon className="mt-px h-5 w-5" />
           <div className="space-y-1">
             {usersProps?.cam4User ? (
-              <p className="text-sm font-medium leading-none">
+              <p className="text-sm font-bold leading-none">
                 {usersProps.cam4User}
               </p>
             ) : (
@@ -120,7 +121,7 @@ export function ServiceCard(
           <CameraIcon className="mt-px h-5 w-5" />
           <div className="space-y-1">
             {usersProps?.cam5User ? (
-              <p className="text-sm font-medium leading-none">
+              <p className="text-sm font-bold leading-none">
                 {usersProps.cam5User}
               </p>
             ) : (
@@ -135,7 +136,7 @@ export function ServiceCard(
           <CameraIcon className="mt-px h-5 w-5" />
           <div className="space-y-1">
             {usersProps?.cam6User ? (
-              <p className="text-sm font-medium leading-none">
+              <p className="text-sm font-bold leading-none">
                 {usersProps.cam6User}
               </p>
             ) : (
@@ -150,7 +151,7 @@ export function ServiceCard(
           <div className="-mx-2 flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground">
             <CameraIcon className="mt-px h-5 w-5" color="red" />
             <div className="space-y-1">
-              <p className="text-sm font-medium leading-none">Nalanda Nunes</p>
+              <p className="text-sm font-bold leading-none">{usersProps?.backstage}</p>
               <p className="text-sm leading-none">Backstage</p>
             </div>
           </div>
@@ -166,7 +167,7 @@ export function ServiceCard(
               >
                 <FaceIcon className="mt-px h-5 w-5" />
                 <div className="space-y-1">
-                  <p className="text-sm font-medium leading-none">
+                  <p className="text-sm font-bold leading-none">
                     {user?.userName}
                   </p>
                   <p className="text-sm leading-none">Additional / Treinee</p>
@@ -258,9 +259,9 @@ export function ServiceCard(
       );
     } else {
       return (
-        <div>
+        <>
           <p>Erro</p>
-        </div>
+        </>
       );
     }
   }

@@ -29,7 +29,7 @@ const Header = () => {
             </ul>
             <div>
               <Button className="mx-2">Sign Up</Button>
-              <Button className="mx-2 bg-zinc-500">Login</Button>
+              <Button className="mx-2 bg-zinc-500 hover:bg-emerald-500">Login</Button>
             </div>
           </div>
         </div>
