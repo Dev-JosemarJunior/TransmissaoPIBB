@@ -18,36 +18,49 @@ export interface ServiceInfoProps {
   serviceId: String;
   serviceTitle: String;
   serviceStatus: String;
-  serviceDate: String;
+  serviceDate: Number;
   servicePlace?: String;
-
-  directorUser: String;
-  switcherUser?: String;
-  cam2User?: String;
-  cam3User?: String;
-  cam4User?: String;
-  cam5User?: String;
-  cam6User?: String;
-  backstage?: String;
-  additional?: {
-    userId: String;
-    userName: String;
-  }[];
+  serviceUser: {
+    directorUser?: String;
+    switcherUser?: String;
+    cam2User?: String;
+    cam3User?: String;
+    cam4User?: String;
+    cam5User?: String;
+    cam6User?: String;
+    backstage?: String;
+    additional?: {
+      userId: String;
+      userName: String;
+    }[];
+  };
 }
 
-export function ServiceCard(
-  serviceProps: ServiceInfoProps
-) {
-  
-  function buildCardUserInfo(usersProps: ServiceInfoProps,) {
+export interface ServiceUserInterface{
+    directorUser?: String;
+    switcherUser?: String;
+    cam2User?: String;
+    cam3User?: String;
+    cam4User?: String;
+    cam5User?: String;
+    cam6User?: String;
+    backstage?: String;
+    additional?: {
+      userId: String;
+      userName: String;
+    }[];
+  };
+
+export function ServiceCard(serviceProps: ServiceInfoProps) {
+  function buildCardUserInfo(usersProps: ServiceInfoProps) {
     return (
       <CardContent className="grid gap-1">
         <div className="-mx-2 flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground">
           <DesktopIcon className="mt-px h-5 w-5" />
           <div className="space-y-1">
-            {usersProps?.directorUser ? (
+            {usersProps?.serviceUser?.directorUser ? (
               <p className="text-sm font-bold leading-none">
-                {usersProps.directorUser}
+                {usersProps.serviceUser.directorUser}
               </p>
             ) : (
               <p className="text-sm font-medium leading-none text-zinc-400">
@@ -60,9 +73,9 @@ export function ServiceCard(
         <div className="-mx-2 flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground">
           <MixerVerticalIcon className="mt-px h-5 w-5" />
           <div className="space-y-1">
-            {usersProps?.switcherUser ? (
+            {usersProps?.serviceUser?.switcherUser ? (
               <p className="text-sm font-bold leading-none">
-                {usersProps.switcherUser}
+                {usersProps.serviceUser.switcherUser}
               </p>
             ) : (
               <p className="text-sm font-medium leading-none text-zinc-400">
@@ -75,9 +88,9 @@ export function ServiceCard(
         <div className="-mx-2 flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground">
           <CameraIcon className="mt-px h-5 w-5" />
           <div className="space-y-1">
-            {usersProps?.cam2User ? (
+            {usersProps?.serviceUser?.cam2User ? (
               <p className="text-sm font-bold leading-none">
-                {usersProps.cam2User}
+                {usersProps.serviceUser.cam2User}
               </p>
             ) : (
               <p className="text-sm font-medium leading-none text-zinc-400">
@@ -90,9 +103,9 @@ export function ServiceCard(
         <div className="-mx-2 flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground">
           <CameraIcon className="mt-px h-5 w-5" />
           <div className="space-y-1">
-            {usersProps?.cam3User ? (
+            {usersProps?.serviceUser?.cam3User ? (
               <p className="text-sm font-bold leading-none">
-                {usersProps.cam3User}
+                {usersProps.serviceUser.cam3User}
               </p>
             ) : (
               <p className="text-sm font-medium leading-none text-zinc-400">
@@ -105,9 +118,9 @@ export function ServiceCard(
         <div className="-mx-2 flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground">
           <CameraIcon className="mt-px h-5 w-5" />
           <div className="space-y-1">
-            {usersProps?.cam4User ? (
+            {usersProps?.serviceUser?.cam4User ? (
               <p className="text-sm font-bold leading-none">
-                {usersProps.cam4User}
+                {usersProps.serviceUser.cam4User}
               </p>
             ) : (
               <p className="text-sm font-medium leading-none text-zinc-400">
@@ -120,9 +133,9 @@ export function ServiceCard(
         <div className="-mx-2 flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground">
           <CameraIcon className="mt-px h-5 w-5" />
           <div className="space-y-1">
-            {usersProps?.cam5User ? (
+            {usersProps?.serviceUser?.cam5User ? (
               <p className="text-sm font-bold leading-none">
-                {usersProps.cam5User}
+                {usersProps.serviceUser.cam5User}
               </p>
             ) : (
               <p className="text-sm font-medium leading-none text-zinc-400">
@@ -135,9 +148,9 @@ export function ServiceCard(
         <div className="-mx-2 flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground">
           <CameraIcon className="mt-px h-5 w-5" />
           <div className="space-y-1">
-            {usersProps?.cam6User ? (
+            {usersProps?.serviceUser?.cam6User ? (
               <p className="text-sm font-bold leading-none">
-                {usersProps.cam6User}
+                {usersProps.serviceUser.cam6User}
               </p>
             ) : (
               <p className="text-sm font-medium leading-none text-zinc-400">
@@ -147,19 +160,21 @@ export function ServiceCard(
             <p className="text-sm leading-none">Cam 6</p>
           </div>
         </div>
-        {usersProps?.backstage ? (
+        {usersProps?.serviceUser?.backstage ? (
           <div className="-mx-2 flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground">
             <CameraIcon className="mt-px h-5 w-5" color="red" />
             <div className="space-y-1">
-              <p className="text-sm font-bold leading-none">{usersProps?.backstage}</p>
+              <p className="text-sm font-bold leading-none">
+                {usersProps?.serviceUser.backstage}
+              </p>
               <p className="text-sm leading-none">Backstage</p>
             </div>
           </div>
         ) : (
           <div></div>
         )}
-        {usersProps?.additional ? (
-          usersProps.additional?.map((user) => {
+        {usersProps?.serviceUser?.additional ? (
+          usersProps.serviceUser.additional?.map((user) => {
             return (
               <div
                 key={user.userId}
@@ -182,16 +197,17 @@ export function ServiceCard(
     );
   }
 
-  function handleServiceCard(
-    serviceProps: ServiceInfoProps
-  ) {
+  function handleServiceCard(serviceProps: ServiceInfoProps) {
     if (serviceProps.serviceStatus == "INATIVO") {
       return (
         <Card className="m-2 h-full border-2 border-red-500 bg-slate-300 md:m-3">
           <CardHeader className="min-w-[13rem] pb-3">
             <CardTitle>{serviceProps.serviceTitle}</CardTitle>
             <CardDescription>
-              Status: <Badge variant="destructive" className="text-[0.60rem]">{serviceProps.serviceStatus}</Badge>
+              Status:{" "}
+              <Badge variant="destructive" className="text-[0.60rem]">
+                {serviceProps.serviceStatus}
+              </Badge>
               <br />
               Dia: {serviceProps.serviceDate}
               <br />
@@ -215,7 +231,10 @@ export function ServiceCard(
           <CardHeader className="min-w-[13rem] pb-3">
             <CardTitle>{serviceProps.serviceTitle}</CardTitle>
             <CardDescription>
-              Status: <Badge className="bg-yellow-500 text-[0.60rem] hover:bg-yellow-400">{serviceProps.serviceStatus}</Badge>
+              Status:{" "}
+              <Badge className="bg-yellow-500 text-[0.60rem] hover:bg-yellow-400">
+                {serviceProps.serviceStatus}
+              </Badge>
               <br />
               Dia: {serviceProps.serviceDate}
               <br />
@@ -231,7 +250,10 @@ export function ServiceCard(
           <CardHeader className="min-w-[13rem] pb-3">
             <CardTitle>{serviceProps.serviceTitle}</CardTitle>
             <CardDescription>
-              Status: <Badge className="bg-green-500 text-[0.60rem] hover:bg-green-400">{serviceProps.serviceStatus}</Badge>
+              Status:{" "}
+              <Badge className="bg-green-500 text-[0.60rem] hover:bg-green-400">
+                {serviceProps.serviceStatus}
+              </Badge>
               <br />
               Dia: {serviceProps.serviceDate}
               <br />
@@ -243,7 +265,7 @@ export function ServiceCard(
       );
     } else if (serviceProps.serviceStatus == "CONCLUIDO") {
       return (
-        <Card className="m-2 border-2 bg-zinc-400 border-zinc-400 md:m-3">
+        <Card className="m-2 border-2 border-zinc-400 bg-zinc-400 md:m-3">
           <CardHeader className="min-w-13rem] pb-3">
             <CardTitle>{serviceProps.serviceTitle}</CardTitle>
             <CardDescription>

@@ -74,5 +74,5 @@ enum PositionName {
   CAM5
   CAM6
   ADICIONAL
-  TREINEE
+  BACKSTAGE
 }
