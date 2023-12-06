@@ -14,7 +14,7 @@ import {
   FaceIcon,
 } from "@radix-ui/react-icons";
 
-export interface ServiceInfoProps {
+export interface ServiceInfoWithUsersProps {
   serviceId: String;
   serviceTitle: String;
   serviceStatus: String;
@@ -34,7 +34,15 @@ export interface ServiceInfoProps {
       userName: String;
     }[];
   };
-}
+}[]
+
+export interface ServiceInfoInterface{
+    serviceId: String;
+    serviceTitle: String;
+    serviceStatus: String;
+    serviceDate: Number;
+    servicePlace?: String;
+}[]
 
 export interface ServiceUserInterface{
     directorUser?: String;
@@ -51,8 +59,8 @@ export interface ServiceUserInterface{
     }[];
   };
 
-export function ServiceCard(serviceProps: ServiceInfoProps) {
-  function buildCardUserInfo(usersProps: ServiceInfoProps) {
+export function ServiceCard(serviceProps: ServiceInfoWithUsersProps) {
+  function buildCardUserInfo(usersProps: ServiceInfoWithUsersProps) {
     return (
       <CardContent className="grid gap-1">
         <div className="-mx-2 flex items-start space-x-4 rounded-md p-2 transition-all hover:bg-accent hover:text-accent-foreground">
@@ -197,7 +205,7 @@ export function ServiceCard(serviceProps: ServiceInfoProps) {
     );
   }
 
-  function handleServiceCard(serviceProps: ServiceInfoProps) {
+  function handleServiceCard(serviceProps: ServiceInfoWithUsersProps) {
     if (serviceProps.serviceStatus == "INATIVO") {
       return (
         <Card className="m-2 h-full border-2 border-red-500 bg-slate-300 md:m-3">
@@ -209,7 +217,7 @@ export function ServiceCard(serviceProps: ServiceInfoProps) {
                 {serviceProps.serviceStatus}
               </Badge>
               <br />
-              Dia: {serviceProps.serviceDate}
+              Dia: {serviceProps.serviceDate.toString().split('T')[0]}
               <br />
               Local: {serviceProps.servicePlace}
             </CardDescription>
@@ -236,7 +244,7 @@ export function ServiceCard(serviceProps: ServiceInfoProps) {
                 {serviceProps.serviceStatus}
               </Badge>
               <br />
-              Dia: {serviceProps.serviceDate}
+              Dia: {serviceProps.serviceDate.toString().split('T')[0]}
               <br />
               Local: {serviceProps.servicePlace}
             </CardDescription>
@@ -255,7 +263,7 @@ export function ServiceCard(serviceProps: ServiceInfoProps) {
                 {serviceProps.serviceStatus}
               </Badge>
               <br />
-              Dia: {serviceProps.serviceDate}
+              Dia: {serviceProps.toString().split('T')[0]}
               <br />
               Local: {serviceProps.servicePlace}
             </CardDescription>
@@ -271,7 +279,7 @@ export function ServiceCard(serviceProps: ServiceInfoProps) {
             <CardDescription>
               Status: <Badge variant="outline"></Badge>
               <br />
-              Dia: {serviceProps.serviceDate}
+              Dia: {serviceProps.serviceDate.toString().split('T')[0]}
               <br />
               Local: {serviceProps.servicePlace}
             </CardDescription>

@@ -12,23 +12,27 @@ datasource db {
 
 // Define a entidade User
 model User {
-  userId      String         @id @unique @default(uuid())
-  name        String         @unique
-  email       String         @unique
-  password    String
-  status      UserStatusENUM
-  createdAt   DateTime
+  userId        String         @id @unique @default(cuid())
+  name          String         @unique
+  email         String         @unique
+  password      String
+  status        UserStatusENUM
+  createdAt     DateTime       @default(now()) // Define createdAt com a data atual
   // Define uma relação N-M com Service através de ServiceUser
-  ServiceUser ServiceUser[]
+  ServiceUser   ServiceUser[]
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
 }
 
 // Define a entidade Service
 model Service {
-  serviceId   String            @id @unique @default(uuid())
+  serviceId   String            @id @unique @default(cuid())
   name        String
   local       String
   date        DateTime
-  createdAt   DateTime
+  createdAt   DateTime          @default(now()) // Define createdAt com a data atual
   slug        String
   status      ServiceStatusENUM
   // Define uma relação N-M com User através de ServiceUser
@@ -37,10 +41,10 @@ model Service {
 
 // Define a tabela intermediária para representar a relação N-M
 model ServiceUser {
-  id           Int          @id @default(autoincrement())
+  id           String       @id @unique @default(cuid())
   userId       String
   serviceId    String
-  position     Int
+  position     Int          @default(autoincrement())
   positionName PositionName
   // Chave estrangeira que conecta ServiceUser a User
   user         User         @relation(fields: [userId], references: [userId])
@@ -49,6 +53,41 @@ model ServiceUser {
 
   // Garante que a combinação de userId e serviceId seja única
   @@unique([userId, serviceId])
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [userId], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [userId], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
 }
 
 enum ServiceStatusENUM {
